@@ -1,8 +1,6 @@
-import DatabaseServices from "../../../core/services/DatabaseServices";
-import NotionConnectionManager from "../../../infra/notion";
-import DatabaseNotionAPI from "../../../infra/notion/DatabaseNotionAPI";
 import DatabaseHandlers from "../endpoints/handlers/DatabaseHandlers";
+import { getDatabaseService } from "./services";
 
 export function getDatabaseHandlers(): DatabaseHandlers {
-    return new DatabaseHandlers(new DatabaseServices(new DatabaseNotionAPI(new NotionConnectionManager())))
+    return new DatabaseHandlers(getDatabaseService())
 }
