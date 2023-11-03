@@ -6,5 +6,13 @@
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "strict": false,                                      /* Enable all strict type-checking options. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
-  }
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/models/*": ["./src/core/domain/model/*"],
+      "@/handlers/*": ["./src/app/api/endpoints/handlers/*"],
+      "@/adapters/*": ["./src/core/interfaces/adapters/*"],
+      "@/useCases/*": ["./src/core/interfaces/useCases/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }

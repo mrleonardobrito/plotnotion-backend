@@ -2,22 +2,27 @@
   "name": "plotnotion-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app/api/api.js",
   "scripts": {
-    "dev": "ts-node-dev ./index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev ./src/app/api/api.ts",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@notionhq/client": "^2.2.13",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.15",
     "@types/express": "^4.17.19",
+    "@types/jest": "^29.5.7",
     "@types/node": "^20.8.6",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"

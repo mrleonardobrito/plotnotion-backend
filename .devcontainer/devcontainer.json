@@ -8,16 +8,22 @@
 		"vscode": {
 			"extensions": [
 				"PKief.material-icon-theme",
-				"guilhermerodz.omni-owl"
+				"guilhermerodz.omni-owl",
+				"GitHub.copilot"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [
+		8000
+	],
+	"features": {
+		"ghcr.io/devcontainers-community/npm-features/typescript:1": {}
+	}
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",
