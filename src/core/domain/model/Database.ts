@@ -1,18 +1,18 @@
 import Model from "./model"
+import Column from "./Column"
 import DTO from "../types/http/DTO"
-import Property from "./Property"
 
 class Database extends Model {
     private _id: string
     private _name: string
-    private _properties: Property[]
+    private _columns: Column[]
 
     static fromJson(json: DTO): Database {
         const obj = new Database()
         obj._id = String(json['id'])
         obj._name = String(json['name'])
-        obj._properties = Array.isArray(json['properties']) 
-            ? json['properties'].map(Property.fromJson)
+        obj._columns = Array.isArray(json['columns']) 
+            ? json['columns'].map(Column.fromJson)
             : [];
         return obj
     }
@@ -22,9 +22,25 @@ class Database extends Model {
 
         dto['id'] = this._id
         dto['name'] = this._name
-        dto['properties'] = this._properties.map((prop) => prop.toJson())
+        dto['columns'] = this._columns.map((prop) => prop.toJson())
 
         return dto
+    }
+
+    get id(): string {
+        return this._id
+    }
+
+    get name(): string {
+        return this._name
+    }
+
+    get columns(): Column[] {
+        return this._columns
+    }
+
+    set columns(columns: Column[]) {
+        this._columns = columns
     }
 }
 
