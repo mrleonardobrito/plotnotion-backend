@@ -35,7 +35,7 @@ class Column extends Model {
         dto['id'] = this._id
         dto['name'] = this._name
         dto['type'] = this._type
-        dto['row'] = this._row ? this._row : [];
+        if (this._row.length > 0) dto['row'] = this._row
 
         return dto
     }
