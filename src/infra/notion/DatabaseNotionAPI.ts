@@ -58,32 +58,23 @@ class DatabaseNotionAPI extends DatabaseAdapter{
 
             const databases = response.results as DatabaseObjectResponse[]
             const databaseList = databases.map(async (database) => {
-                const columnsDTO = Object.keys(database.properties).map((key) => {
-                    const column = database.properties[key]
-                    const dto = {
-                        id: column.id,
-                        name: column.name,
-                        type: column.type,
-                        row: []
-                    } as ColumnDTO
-                    return dto
-                }).filter((column) => PropertyFactory.isHandledProperty(column.type))
+                const columnsDTO = Object.keys(database.properties).
+                    filter((key) => PropertyFactory.isHandledProperty(database.properties[key].type)).
+                    map((key) => {
+                        const property = database.properties[key]
+                        const column = {
+                            id: key,
+                            name: property.name,
+                            type: property.type,
+                        } as ColumnDTO
 
-                const columns = [] as ColumnDTO[]
-
-                for(const columnDTO of columnsDTO) {
-                    const rows = await this.getDatabaseRows(database.id, columnDTO)
-                
-                    if(rows !== null) {
-                        columnDTO.row = rows
-                        columns.push(columnDTO)
-                    }
-                }
+                        return column
+                    })
                 
                 const dto = {
                     id: database.id,
                     name: database.title[0].plain_text,
-                    columns: columns
+                    columns: columnsDTO
                 } as DatabaseDTO
                 
                 return Database.fromJson(dto)
